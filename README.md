@@ -1,6 +1,14 @@
 # wp-redis-info
 Test Redis ObjectCache and view usage via WP-CLI
 
+Available commands:
+
+- redis-info connect
+- redis-info flush
+- redis-info keys
+- redis-info value
+
+----
 
 ### wp redis-info connect
 Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format <hostname>:<port>.
@@ -27,15 +35,78 @@ Expired Keys: 4828
 ```
   
 ----
+
+### wp redis-info flush
+Flush redis objects.
+ 
+EXAMPLES:
+```
+wp redis-info flush
+wp redis-info flush 127.0.0.1:6019
+wp redis-info flush localhost
+wp redis-info flush :6200
+```
+ 
+EXAMPLE OUTPUT:
+ ``` 
+Success: Redis cache flushed.
+```
   
-### wp redis-info connect
-Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format <hostname>:<port>.
+----
+  
+### wp redis-info keys
+Display Redis keys.
 
 EXAMPLES:
 ```
-wp redis-info connect
-wp redis-info connect 127.0.0.1:6019
-wp redis-info connect localhost
-wp redis-info connect :6200
+wp redis-info keys
+wp redis-info keys 127.0.0.1:6379
+wp redis-info keys localhost
+wp redis-info keys :6379
 ``` 
-  
+
+EXAMPLE OUTPUT:
+ ``` 
+Key: 05446term_meta.1127
+Type: 1
+------------------------
+Key: 05446options._transient_timeout_https-pcx3-com-wp-content-uploads-2022-11-image-14-png
+Type: 1
+------------------------
+Key: 05446options._transient_timeout_https-pcx3-com-wp-content-uploads-2022-11-image-13-png
+Type: 1
+------------------------
+Key: 05446post_meta.2676
+Type: 1
+------------------------
+Key: 05446terms.1142
+Type: 1
+------------------------
+Key: 05446options._transient_timeout_https-pcx3-com-wp-content-uploads-2022-10-image-5-png
+Type: 1
+------------------------
+Key: 05446post_meta.7767
+Type: 1
+------------------------
+Key: 05446terms.1136
+Type: 1
+------------------------
+Key: 05446post_meta.7317
+Type: 1
+------------------------
+Key: 05446posts.wp_query:3fa1b42246bbbf4246e05bd9ccff07f2:0.20156600 16852947970.70155200 1685294889
+Type: 1
+------------------------
+Key: 05446post_meta.2695
+Type: 1
+------------------------
+Key: 05446post_tag_relationships.9757
+Type: 1
+------------------------
+Key: 05446post_meta.9290
+Type: 1
+------------------------
+Key: 05446term_meta.1337
+Type: 1
+------------------------
+```
