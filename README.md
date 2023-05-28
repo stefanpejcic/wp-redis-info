@@ -3,10 +3,10 @@ Test Redis ObjectCache and view usage via WP-CLI
 
 Available commands:
 
-- redis-info connect
-- redis-info flush
-- redis-info keys
-- redis-info value
+- [redis-info connect](#redis-info%20connect)
+- [redis-info flush](#redis-info%20flush)
+- [redis-info keys](#redis-info%20keys)
+- [redis-info value](#redis-info%20value)
 
 ----
 
@@ -110,3 +110,23 @@ Key: 05446term_meta.1337
 Type: 1
 ------------------------
 ```
+
+ ----
+
+### wp redis-info values
+Display Redis value for a specific key.
+ 
+EXAMPLES:
+```
+wp redis-info value 05446category_relationships.6376
+wp redis-info value 05446category_relationships.6376 127.0.0.1:6379
+```
+ 
+EXAMPLE OUTPUT:
+ 
+``` 
+a:1:{s:4:"data";O:8:"stdClass":10:{s:7:"term_id";i:1036;s:4:"name";s:5:"check";s:4:"slug";s:5:"check";s:10:"term_group";i:0;s:16:"term_taxonomy_id";i:1036;s:8:"taxonomy";s:8:"post_tag";s:11:"description";s:0:"";s:6:"parent";i:0;s:5:"count";i:3;s:6:"filter";s:3:"raw";}}
+```
+  
+----
+ 
