@@ -113,7 +113,7 @@ Type: 1
 
  ----
 
-### wp redis-info values
+### wp redis-info value
 Display Redis value for a specific key.
  
 EXAMPLES:
