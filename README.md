@@ -3,10 +3,10 @@ Test Redis ObjectCache and view usage via WP-CLI
 
 Available commands:
 
-- [redis-info connect](#redis-info%20connect)
-- [redis-info flush](#redis-info%20flush)
-- [redis-info keys](#redis-info%20keys)
-- [redis-info value](#redis-info%20value)
+- [redis-info connect](#redis-info-connect)
+- [redis-info flush](#redis-info-flush)
+- [redis-info keys](#redis-info-keys)
+- [redis-info value](#redis-info-value)
 
 ----
 
