@@ -10,7 +10,7 @@ Available commands:
 
 ----
 
-### wp redis-info connect
+## wp redis-info connect
 Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format <hostname>:<port>.
 
 EXAMPLES:
@@ -36,7 +36,7 @@ Expired Keys: 4828
   
 ----
 
-### wp redis-info flush
+## wp redis-info flush
 Flush redis objects.
  
 EXAMPLES:
@@ -54,7 +54,7 @@ Success: Redis cache flushed.
   
 ----
   
-### wp redis-info keys
+## wp redis-info keys
 Display Redis keys.
 
 EXAMPLES:
@@ -113,7 +113,7 @@ Type: 1
 
  ----
 
-### wp redis-info value
+## wp redis-info value
 Display Redis value for a specific key.
  
 EXAMPLES:
