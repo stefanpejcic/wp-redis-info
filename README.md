@@ -46,7 +46,7 @@ EXAMPLE OUTPUT:
 ----
  
 ## wp redis-info connect
-Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format <hostname>:<port>.
+Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format ```<hostname>:<port>```.
 
 EXAMPLES:
 ```
