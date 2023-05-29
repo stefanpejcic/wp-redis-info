@@ -1,5 +1,5 @@
 # wp-redis-info
-Test Redis ObjectCache and view usage via WP-CLI
+Test Redis Object Cache and monitor usage via WP-CLI
 
 Available commands:
 
