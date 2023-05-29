@@ -3,6 +3,7 @@ Test Redis ObjectCache and view usage via WP-CLI
 
 Available commands:
 
+ [redis-info status](#wp-redis-info-status)
 - [redis-info connect](#wp-redis-info-connect)
 - [redis-info flush](#wp-redis-info-flush)
 - [redis-info keys](#wp-redis-info-keys)
@@ -10,6 +11,40 @@ Available commands:
 
 ----
 
+## wp redis-info status
+Tests connection to REDIS server and display version, port and process ID
+
+EXAMPLES:
+```
+wp redis-info status
+wp redis-info status 127.0.0.1:6019
+wp redis-info status localhost
+wp redis-info status :6200
+```
+ 
+EXAMPLE OUTPUT:
+ ``` 
+               _._
+          _.-``__ ''-._
+     _.-``    `.  `_.  ''-._           Redis 6.0.5
+ .-`` .-```.  ```\/    _.,_ ''-._
+(    '      ,       .-`  | `,    )
+|`-._`-...-` __...-.``-._|'` _.-'|     Port: 6019
+|    `-._   `._    /     _.-'    |     PID: 194881
+ `-._    `-._  `-./  _.-'    _.-'
+|`-._`-._    `-.__.-'    _.-'_.-'|
+|    `-._`-._        _.-'_.-'    |           <https://redis.plugins.club/>
+ `-._    `-._`-.__.-'_.-'    _.-'
+|`-._`-._    `-.__.-'    _.-'_.-'|
+|    `-._`-._        _.-'_.-'    |
+ `-._    `-._`-.__.-'_.-'    _.-'
+     `-._    `-.__.-'    _.-'
+         `-._        _.-'
+             `-.__.-'
+```
+  
+----
+ 
 ## wp redis-info connect
 Tests connection to REDIS server, by default uses 127.0.0.1:6379 and you can optionally specify the Redis server and port in the format <hostname>:<port>.
 
