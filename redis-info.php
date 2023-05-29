@@ -7,6 +7,96 @@
 
 if (defined('WP_CLI') && WP_CLI) {
 
+
+    /**
+     * Display Redis server information.
+     */
+    class Redis_Status_Command extends WP_CLI_Command
+    {
+        /**
+         * Display Redis server information.
+         *
+         * ## OPTIONS
+         *
+         * [<server>]
+         * : Optional Redis server and port in the format <hostname>:<port>.
+         *
+         * ## EXAMPLES
+         *
+         *     wp redis-info connect
+         *
+         *     wp redis-info connect 127.0.0.1:6379
+         *
+         *     wp redis-info connect localhost
+         * 
+         *     wp redis-info connect :6379
+         *
+         * @when after_wp_load
+         */
+        public function __invoke($args, $assoc_args)
+        {
+
+// Redis server and port configuration
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
+
+if (!empty($args[0])) {
+    $server_parts = explode(':', $args[0]);
+    if (count($server_parts) === 2) {
+        // Check if server IP is provided or use the default value
+        $redis_server = $server_parts[0] !== '' ? $server_parts[0] : $redis_server;
+        $redis_port = $server_parts[1];
+    } elseif (count($server_parts) === 1) {
+        if ($server_parts[0] !== '') {
+            // Only hostname is provided, use default port
+            $redis_server = $server_parts[0];
+        } else {
+            // No hostname or port provided, use default server IP and port
+            $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+            $redis_port = get_option('object_cacher_redis_port', '6379');
+        }
+    }
+}
+
+
+
+            try {
+                // Connect to Redis
+                $redis = new Redis();
+                $redis->connect($redis_server, $redis_port);
+                // Get Redis server port
+                $redis_port = $redis->getPort();
+                // Get Redis server information
+                $server_info = $redis->info();
+
+                 // Output server information
+WP_CLI::log("               _._");
+WP_CLI::log("          _.-``__ ''-._");
+WP_CLI::log("     _.-``    `.  `_.  ''-._           Redis {$server_info['redis_version']}");
+WP_CLI::log(" .-`` .-```.  ```\\/    _.,_ ''-._");
+WP_CLI::log("(    '      ,       .-`  | `,    )     ");
+WP_CLI::log("|`-._`-...-` __...-.``-._|'` _.-'|     Port: {$redis_port}");
+WP_CLI::log("|    `-._   `._    /     _.-'    |     PID: {$server_info['process_id']}");
+WP_CLI::log("|`-._    `-._  `-./  _.-'    _.-'|");
+WP_CLI::log("|`-._`-._    `-.__.-'    _.-'_.-'|");
+WP_CLI::log("|    `-._`-._        _.-'_.-'    |           <https://redis.plugins.club/>");
+WP_CLI::log("|`-._    `-._`-.__.-'_.-'    _.-'|");
+WP_CLI::log("|`-._`-._    `-.__.-'    _.-'_.-'|");
+WP_CLI::log("|    `-._`-._        _.-'_.-'    |");
+WP_CLI::log(" `-._    `-._`-.__.-'_.-'    _.-'");
+WP_CLI::log("     `-._    `-.__.-'    _.-'");
+WP_CLI::log("         `-._        _.-'");
+WP_CLI::log("             `-.__.-'");
+
+                // Disconnect from Redis
+                $redis->close();
+            } catch (RedisException $e) {
+                WP_CLI::error('Failed to connect to Redis server on ' . $redis_server . ':' . $redis_port . '. Make sure REDIS is running!');
+            }
+        }
+    }
+    
+    
     /**
      * Display Redis server information.
      */
@@ -36,8 +126,8 @@ if (defined('WP_CLI') && WP_CLI) {
         {
 
 // Redis server and port configuration
-$redis_server = '127.0.0.1';
-$redis_port = '6379';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
 
 if (!empty($args[0])) {
     $server_parts = explode(':', $args[0]);
@@ -51,7 +141,8 @@ if (!empty($args[0])) {
             $redis_server = $server_parts[0];
         } else {
             // No hostname or port provided, use default server IP and port
-            $redis_server = '127.0.0.1';
+            $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+            $redis_port = get_option('object_cacher_redis_port', '6379');
         }
     }
 }
@@ -88,7 +179,9 @@ if (!empty($args[0])) {
             }
         }
     }
-
+    
+    
+    
     /**
      * Display Redis keys.
      */
@@ -117,8 +210,8 @@ if (!empty($args[0])) {
         public function __invoke($args, $assoc_args)
         {
 // Redis server and port configuration
-$redis_server = '127.0.0.1';
-$redis_port = '6379';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
 
 if (!empty($args[0])) {
     $server_parts = explode(':', $args[0]);
@@ -132,7 +225,8 @@ if (!empty($args[0])) {
             $redis_server = $server_parts[0];
         } else {
             // No hostname or port provided, use default server IP and port
-            $redis_server = '127.0.0.1';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
         }
     }
 }
@@ -202,8 +296,8 @@ if (!empty($args[0])) {
             $redis_key = $args[0];
 
             // Redis server and port configuration
-$redis_server = '127.0.0.1';
-$redis_port = '6379';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
 
 if (!empty($args[0])) {
     $server_parts = explode(':', $args[0]);
@@ -217,7 +311,8 @@ if (!empty($args[0])) {
             $redis_server = $server_parts[0];
         } else {
             // No hostname or port provided, use default server IP and port
-            $redis_server = '127.0.0.1';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
         }
     }
 }
@@ -287,9 +382,9 @@ if (!empty($args[0])) {
          */
         public function __invoke($args, $assoc_args){
             
-         // Redis server and port configuration
-$redis_server = '127.0.0.1';
-$redis_port = '6379';
+// Redis server and port configuration
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
 
 if (!empty($args[0])) {
     $server_parts = explode(':', $args[0]);
@@ -303,7 +398,8 @@ if (!empty($args[0])) {
             $redis_server = $server_parts[0];
         } else {
             // No hostname or port provided, use default server IP and port
-            $redis_server = '127.0.0.1';
+    $redis_server = get_option('object_cacher_redis_server', '127.0.0.1');
+    $redis_port = get_option('object_cacher_redis_port', '6379');
         }
     }
 }
@@ -326,6 +422,7 @@ if (!empty($args[0])) {
     
     
     // Register WP-CLI commands
+    WP_CLI::add_command('redis-info status', 'Redis_Status_Command');
     WP_CLI::add_command('redis-info connect', 'Redis_Info_Command');
     WP_CLI::add_command('redis-info keys', 'Redis_Keys_Command');
     WP_CLI::add_command('redis-info value', 'Redis_Value_Command');
