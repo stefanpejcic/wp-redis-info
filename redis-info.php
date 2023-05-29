@@ -1,12 +1,18 @@
 <?php
 /**
- * Plugin Name: Redis Info Command
- * Description: WP-CLI command to display Redis server information and keys.
- * Version: 1.0.0
- */
+ * Plugin Name:       Redis Info Command
+ * Plugin URI:        https://redis.plugins.club/
+ * Description:       WP-CLI command to display Redis server information and keys.
+ * Version:           1.0.0
+ * Author:            ♣️ plugins.club
+ * Author URI:        https://plugins.club
+ * License:           GPL-2.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Requires at least: 5.0
+ * Tested up to: 	  6.2
+*/
 
 if (defined('WP_CLI') && WP_CLI) {
-
 
     /**
      * Display Redis server information.
@@ -77,10 +83,10 @@ WP_CLI::log(" .-`` .-```.  ```\\/    _.,_ ''-._");
 WP_CLI::log("(    '      ,       .-`  | `,    )     ");
 WP_CLI::log("|`-._`-...-` __...-.``-._|'` _.-'|     Port: {$redis_port}");
 WP_CLI::log("|    `-._   `._    /     _.-'    |     PID: {$server_info['process_id']}");
-WP_CLI::log("|`-._    `-._  `-./  _.-'    _.-'|");
+WP_CLI::log(" `-._    `-._  `-./  _.-'    _.-'");
 WP_CLI::log("|`-._`-._    `-.__.-'    _.-'_.-'|");
 WP_CLI::log("|    `-._`-._        _.-'_.-'    |           <https://redis.plugins.club/>");
-WP_CLI::log("|`-._    `-._`-.__.-'_.-'    _.-'|");
+WP_CLI::log(" `-._    `-._`-.__.-'_.-'    _.-'");
 WP_CLI::log("|`-._`-._    `-.__.-'    _.-'_.-'|");
 WP_CLI::log("|    `-._`-._        _.-'_.-'    |");
 WP_CLI::log(" `-._    `-._`-.__.-'_.-'    _.-'");
