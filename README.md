@@ -153,8 +153,7 @@ Display Redis value for a specific key.
  
 EXAMPLES:
 ```
-wp redis-info value 05446category_relationships.6376
-wp redis-info value 05446category_relationships.6376 127.0.0.1:6379
+wp redis-info value roc-05446category_relationships.6376
 ```
  
 EXAMPLE OUTPUT:
